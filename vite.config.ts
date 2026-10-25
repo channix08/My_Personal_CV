@@ -3,7 +3,8 @@ import react from '@vitejs/plugin-react'
 import path from 'node:path'
 
 export default defineConfig({
-  base: '/My_Personal_CV/',
+  // Vercel serves the site at /; GitHub Pages sets SITE_BASE in its workflow.
+  base: process.env.SITE_BASE || '/',
   plugins: [react()],
   resolve: {
     alias: {

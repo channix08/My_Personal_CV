@@ -1,4 +1,4 @@
-Portfolio
+# Portfolio
 
 ## Short Description
 
@@ -19,9 +19,17 @@ Fourth-year Bachelor of Science in Information Technology student at Davao del N
 
 ## Live Vercel Link
 
-
-
 **Deployment pending.** I will add the public Vercel URL here after deploying the website.
+
+## Deploy to Vercel
+
+1. Commit and push this project to the `main` branch of my GitHub repository.
+2. In Vercel, select **Add New → Project** and import `channix08/My_Personal_CV`.
+3. Set the root directory to the repository root, the framework preset to **Vite**, the build command to `npm run build`, and the output directory to `dist`.
+4. Deploy, then open the generated `*.vercel.app` URL and check Home, About, Projects, Services, and Contact. Open `/about` directly to confirm page refreshes work.
+5. Replace the pending link above with the verified Vercel URL.
+
+The default build uses `/` for Vercel. The GitHub Pages workflow sets `SITE_BASE=/My_Personal_CV/` for its own deployment.
 
 ## Sections
 

@@ -34,6 +34,8 @@ jobs:
 
       - name: Build React application
         run: npm run build
+        env:
+          SITE_BASE: /My_Personal_CV/
 
       - name: Support direct links to portfolio pages
         run: |
