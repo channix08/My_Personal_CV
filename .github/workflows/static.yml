@@ -35,6 +35,11 @@ jobs:
       - name: Build React application
         run: npm run build
 
+      - name: Support direct links to portfolio pages
+        run: |
+          cp dist/index.html dist/404.html
+          touch dist/.nojekyll
+
       - name: Upload production build
         uses: actions/upload-pages-artifact@v3
         with:

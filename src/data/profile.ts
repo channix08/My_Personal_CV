@@ -10,6 +10,7 @@
  */
 
 import { Code, FilmSlate, MapPin, type Icon } from '@/components/slab'
+import { assetUrl } from '@/lib/assetUrl'
 
 export type SocialLink = {
   label: string
@@ -47,7 +48,7 @@ export const profile: Profile = {
   firstName: 'Christian',
   handle: 'Christian Lord V. Estorba',
   role: 'Full Stack Developer & Video Editor',
-  avatarSrc: '/profile.png',
+  avatarSrc: assetUrl('/profile.png'),
   email: 'christianvaleestorba@gmail.com',
   location: 'Davao City, Philippines',
   // Pick any icon from https://phosphoricons.com and import it above.
@@ -61,13 +62,13 @@ export const profile: Profile = {
   displayName: { line1: 'Full Stack Dev and', line2: 'Video Editor' },
   hero: {
     body: 'I build thoughtful web experiences and edit videos that make ideas clear, engaging, and easy to share.',
-    portraitSrc: '/profile.jpg',
+    portraitSrc: assetUrl('/profile.jpg'),
     portraitAlt: 'Portrait of Christian Lord V. Estorba',
   },
   socials: [
-    { label: 'Facebook', href: 'https://www.facebook.com/ch4nnix08', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/christian-estorba-162a2a371/', iconPath: '/icons/linkedin.svg' },
-    { label: 'GitHub', href: 'https://github.com/channix08', iconPath: '/icons/ai/github.svg' },
-    { label: 'Discord', href: 'https://discord.com/users/1368776780638326824', iconPath: '/icons/discord.svg' },
+    { label: 'Facebook', href: 'https://www.facebook.com/ch4nnix08', iconPath: assetUrl('/icons/facebook.svg') },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/christian-estorba-162a2a371/', iconPath: assetUrl('/icons/linkedin.svg') },
+    { label: 'GitHub', href: 'https://github.com/channix08', iconPath: assetUrl('/icons/ai/github.svg') },
+    { label: 'Discord', href: 'https://discord.com/users/1368776780638326824', iconPath: assetUrl('/icons/discord.svg') },
   ],
 }

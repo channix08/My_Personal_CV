@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { assetUrl } from '@/lib/assetUrl'
 
 /**
  * ToolsMarquee
@@ -77,14 +78,14 @@ export default function ToolsMarquee() {
                   <span
                     className="tools-marquee__icon"
                     style={{
-                      ['--icon-url' as string]: `url('${tool.iconPath}')`,
+                      ['--icon-url' as string]: `url('${assetUrl(tool.iconPath)}')`,
                       ['--brand-color' as string]: tool.color ?? 'var(--navy)',
                     }}
                   />
                 ) : (
                   <img
                     className="tools-marquee__img"
-                    src={tool.iconPath}
+                    src={assetUrl(tool.iconPath)}
                     alt=""
                     aria-hidden="true"
                     loading="lazy"

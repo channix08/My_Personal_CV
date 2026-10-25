@@ -1,6 +1,7 @@
 import type { CSSProperties } from 'react'
 import { MagnetStraight, Timer, Trophy, CheckCircle } from '@/components/slab'
 import type { Icon } from '@/components/slab'
+import { assetUrl } from '@/lib/assetUrl'
 
 /**
  * ServicesGrid - the Services view on one glass sheet.
@@ -52,10 +53,10 @@ const STAGES: Stage[] = [
 /* ---------- The services ---------- */
 
 // Example tool marks from /public/icons. Swap for the tools you actually use.
-const REACT = '/icons/ai/react.svg'
-const VITE = '/icons/ai/vite.svg'
-const CLOUDFLARE = '/icons/ai/cloudflare.svg'
-const CHROME = '/icons/ai/googlechrome.svg'
+const REACT = assetUrl('/icons/ai/react.svg')
+const VITE = assetUrl('/icons/ai/vite.svg')
+const CLOUDFLARE = assetUrl('/icons/ai/cloudflare.svg')
+const CHROME = assetUrl('/icons/ai/googlechrome.svg')
 
 type Service = {
   index: string

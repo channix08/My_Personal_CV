@@ -1,5 +1,6 @@
 import { ArrowSquareOut, FolderOpen } from '@/components/slab'
 import { portfolioProjects } from '@/data/projects'
+import { assetUrl } from '@/lib/assetUrl'
 
 export default function PortfolioProjects() {
   return (
@@ -21,7 +22,7 @@ export default function PortfolioProjects() {
         <ul className="portfolio-projects__grid" role="list">
           {portfolioProjects.map((project) => (
             <li className="home__glass portfolio-projects__card" key={project.title}>
-              {project.imageUrl && <img className="portfolio-projects__image" src={project.imageUrl} alt={`${project.title} preview`} loading="lazy" />}
+              {project.imageUrl && <img className="portfolio-projects__image" src={assetUrl(project.imageUrl)} alt={`${project.title} preview`} loading="lazy" />}
               <div className="portfolio-projects__card-body">
                 <h2>{project.title}</h2>
                 <p>{project.description}</p>
