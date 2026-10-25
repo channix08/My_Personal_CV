@@ -8,23 +8,23 @@ export type QA = { q: string; a: string }
  */
 export const FAQS: QA[] = [
   {
-    q: 'What do you do?',
-    a: 'PLACEHOLDER - tell me what to put here: the kinds of work you take on, and who it is usually for.',
+    q: 'What kind of work do you do?',
+    a: 'I work on responsive websites, web apps, improvements to existing sites, and video edits. Share your idea or brief and I can tell you where I can help.',
   },
   {
-    q: 'How fast can you start?',
-    a: 'PLACEHOLDER - tell me what to put here: your usual lead time for small fixes vs. larger projects, and your working hours.',
+    q: 'Can you handle both web and video?',
+    a: 'Yes. I can help with the website or app side and with video content that supports it. The scope depends on what you need delivered.',
   },
   {
-    q: 'How much do you charge?',
-    a: 'PLACEHOLDER - tell me what to put here: how you price (hourly, per project, retainer) and how a quote is put together.',
+    q: 'How do we discuss a project?',
+    a: 'Send a short description of the goal, any references, and the timeline you have in mind. We can use that to clarify the scope and next steps.',
   },
   {
     q: 'Where are you based?',
-    a: 'PLACEHOLDER - tell me what to put here: your location or timezone, and which client timezones you overlap with.',
+    a: 'I am based in Davao City, Philippines, in Philippine Time (UTC+8). Remote collaboration is welcome.',
   },
   {
-    q: 'What happens after I write?',
-    a: 'PLACEHOLDER - tell me what to put here: how fast you reply and what the next step looks like.',
+    q: 'What should I include in my message?',
+    a: 'Tell me what you are building or editing, who it is for, and what you want it to achieve. Links or examples help, but a simple outline is enough to start.',
   },
 ]

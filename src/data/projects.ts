@@ -1,5 +1,17 @@
 export type AppStat = { value: string; label: string }
 
+export type PortfolioProject = {
+  title: string
+  description: string
+  technologies: string[]
+  imageUrl?: string
+  repositoryUrl?: string
+  demoUrl?: string
+}
+
+// Add your academic and personal projects here when they are ready to share.
+export const portfolioProjects: PortfolioProject[] = []
+
 export type AppProject = {
   name: string
   tagline: string

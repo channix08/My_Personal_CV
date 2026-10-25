@@ -2,19 +2,18 @@
  * YOUR IDENTITY - start here.
  *
  * Everything that says who you are lives in this file: name, handle, photo,
- * socials, email and the Home headline. Every value below is a PLACEHOLDER.
- * Replace the text, or hand this file to your AI assistant and tell it what
- * to put in each field.
+ * socials, email and the Home headline. Social icons stay visible while their
+ * profile URLs are being added; they become links once `href` is supplied.
  *
  * Page-specific copy (projects, services, testimonials, FAQs) lives in the
  * other files in src/data/ and at the top of each view component.
  */
 
-import { Briefcase, SealCheck, Clock, type Icon } from '@/components/slab'
+import { Code, FilmSlate, MapPin, type Icon } from '@/components/slab'
 
 export type SocialLink = {
   label: string
-  href: string
+  href?: string
   iconPath: string
 }
 
@@ -30,8 +29,6 @@ export type Profile = {
   role: string
   /** Square image. An SVG, WebP or PNG with a transparent background looks best. */
   avatarSrc: string
-  /** Tooltip / screen-reader label on the verified tick next to your name. */
-  verifiedLabel: string
   email: string
   location: string
   /** Three short proof facts shown on phones under the Home lede. */
@@ -46,31 +43,31 @@ export type Profile = {
 }
 
 export const profile: Profile = {
-  name: 'Your Name',
-  firstName: 'Your Name',
-  handle: '@yourhandle',
-  role: 'PLACEHOLDER - your title',
-  avatarSrc: '/avatar.svg',
-  verifiedLabel: 'PLACEHOLDER - what the tick means (e.g. a certification)',
-  email: 'you@example.com',
-  location: 'PLACEHOLDER - your city or timezone',
+  name: 'Channix',
+  firstName: 'Christian',
+  handle: 'Christian Lord V. Estorba',
+  role: 'Full Stack Developer & Video Editor',
+  avatarSrc: '/profile.png',
+  email: 'christianvaleestorba@gmail.com',
+  location: 'Davao City, Philippines',
   // Pick any icon from https://phosphoricons.com and import it above.
   stats: [
-    { value: '0 yrs', label: 'PLACEHOLDER', Icon: Briefcase },
-    { value: '#000', label: 'PLACEHOLDER', Icon: SealCheck },
-    { value: 'GMT+0', label: 'PLACEHOLDER', Icon: Clock },
+    { value: 'Web', label: 'Development', Icon: Code },
+    { value: 'Video', label: 'Editing', Icon: FilmSlate },
+    { value: 'Davao', label: 'Philippines', Icon: MapPin },
   ],
   // The intro types this line, then flies it into the Home headline.
   // Keep it short: two halves, 5-8 words total.
-  displayName: { line1: 'Your headline here.', line2: 'Keep it short.' },
+  displayName: { line1: 'Full Stack Dev and', line2: 'Video Editor' },
   hero: {
-    body: 'PLACEHOLDER - one line on what you do and who you do it for.',
-    portraitSrc: '/avatar.svg',
-    portraitAlt: 'Portrait placeholder',
+    body: 'I build thoughtful web experiences and edit videos that make ideas clear, engaging, and easy to share.',
+    portraitSrc: '/profile.jpg',
+    portraitAlt: 'Portrait of Christian Lord V. Estorba',
   },
   socials: [
-    { label: 'Facebook profile', href: '#', iconPath: '/icons/facebook.svg' },
-    { label: 'LinkedIn profile', href: '#', iconPath: '/icons/linkedin.svg' },
-    { label: 'Discord profile', href: '#', iconPath: '/icons/discord.svg' },
+    { label: 'Facebook', href: 'https://www.facebook.com/ch4nnix08', iconPath: '/icons/facebook.svg' },
+    { label: 'LinkedIn', href: 'https://www.linkedin.com/in/christian-estorba-162a2a371/', iconPath: '/icons/linkedin.svg' },
+    { label: 'GitHub', href: 'https://github.com/channix08', iconPath: '/icons/ai/github.svg' },
+    { label: 'Discord', href: 'https://discord.com/users/1368776780638326824', iconPath: '/icons/discord.svg' },
   ],
 }

@@ -1,4 +1,4 @@
-import { StrictMode, lazy, Suspense } from 'react'
+import { StrictMode, lazy } from 'react'
 import { createRoot } from 'react-dom/client'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import App from './App'
@@ -10,13 +10,8 @@ import { restorePrefs } from '@/lib/a11y'
 // Every route but Home is its own chunk: the first visit only pays for Home.
 const ProjectsView = lazy(() => import('@/views/ProjectsView'))
 const ServicesView = lazy(() => import('@/views/ServicesView'))
-const ShowcaseView = lazy(() => import('@/views/ShowcaseView'))
-const TestimonialsGrid = lazy(() => import('@/components/TestimonialsGrid'))
 const AboutGrid = lazy(() => import('@/components/AboutGrid'))
 const ContactGrid = lazy(() => import('@/components/ContactGrid'))
-const Privacy = lazy(() => import('@/components/Privacy'))
-const ToS = lazy(() => import('@/components/ToS'))
-const ThankYou = lazy(() => import('@/components/ThankYou'))
 import './styles/tokens.css'
 import './styles/global.css'
 import './styles/theme-glyph.css'
@@ -47,6 +42,7 @@ import './styles/apple.css'
 import './styles/mobile-pass.css'
 // Last: the perf tiers only ever turn things OFF, so they must win.
 import './styles/perf.css'
+import './styles/portfolio-content.css'
 
 // Re-apply this tab's performance verdict before the first paint, so a
 // downgraded visitor never sees the expensive layers flash back on reload.
@@ -66,15 +62,9 @@ createRoot(container).render(
           <Route path="/" element={<Home />} />
           <Route path="/projects" element={<ProjectsView />} />
           <Route path="/services" element={<ServicesView />} />
-          <Route path="/showcase" element={<ShowcaseView />} />
-          <Route path="/testimonials" element={<TestimonialsGrid />} />
           <Route path="/about" element={<AboutGrid />} />
           <Route path="/contact" element={<ContactGrid />} />
         </Route>
-        {/* Standalone pages: their own layout, no rail, document scroll. */}
-        <Route path="/privacy" element={<Suspense fallback={null}><Privacy /></Suspense>} />
-        <Route path="/terms" element={<Suspense fallback={null}><ToS /></Suspense>} />
-        <Route path="/thank-you" element={<Suspense fallback={null}><ThankYou /></Suspense>} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

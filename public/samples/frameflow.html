@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>FrameFlow — Sample Project</title>
+  <style>
+    :root{font-family:Inter,Arial,sans-serif;color:#eeeef4;background:#101019}
+    *{box-sizing:border-box}body{margin:0}.app{min-height:100vh;display:grid;grid-template-columns:220px 1fr}
+    aside{padding:30px 22px;border-right:1px solid #292a38;background:#151620}.brand{font-size:22px;font-weight:800;letter-spacing:-.05em}.brand b{color:#e8a2ff}.sub{font-size:11px;text-transform:uppercase;letter-spacing:.16em;color:#a8a6b6;margin:7px 0 34px}
+    nav{display:grid;gap:8px}nav span{border-radius:12px;padding:12px 14px;color:#aaa9bc;font-size:14px}nav .active{background:#29263d;color:#fff;font-weight:700}
+    .aside-foot{margin-top:100px;border-top:1px solid #2b2b38;padding-top:24px;font-size:12px;line-height:1.5;color:#a8a6b6}
+    main{padding:36px clamp(24px,4vw,68px) 70px;max-width:1480px;width:100%;margin:auto}
+    .top{display:flex;justify-content:space-between;gap:20px;align-items:center}.eyebrow{font-size:11px;text-transform:uppercase;letter-spacing:.2em;color:#c38de0;font-weight:800}h1{font-size:clamp(34px,4vw,58px);letter-spacing:-.06em;margin:10px 0 8px}p{color:#a6a5b6;line-height:1.6;margin:0}
+    .pill{border:1px solid #444154;background:#222231;color:#dedbe8;border-radius:999px;padding:10px 16px;white-space:nowrap;font-size:13px}
+    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:36px 0}.metric{border:1px solid #30303e;background:#1b1c28;border-radius:18px;padding:22px}.metric strong{font-size:30px;display:block;letter-spacing:-.05em;margin:8px 0}.metric small{color:#aaa8bb}.metric .dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:#a4dbb2;margin-right:7px}
+    .section-head{display:flex;justify-content:space-between;align-items:end;gap:20px;margin:28px 0 16px}.section-head h2{margin:0;font-size:23px;letter-spacing:-.04em}.tabs{display:flex;gap:8px;flex-wrap:wrap}.tabs button{border:1px solid #363647;background:#1d1d29;color:#bcbac9;border-radius:999px;padding:8px 14px;cursor:pointer;font:inherit;font-size:12px}.tabs button[aria-pressed="true"]{background:#dca8f0;color:#23152a;border-color:#dca8f0;font-weight:800}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.card{border:1px solid #30303e;background:#1b1c28;border-radius:20px;overflow:hidden}.poster{height:190px;position:relative;display:grid;place-items:center;overflow:hidden}.poster:before{content:"";position:absolute;width:220px;height:220px;border:1px solid #ffffff55;border-radius:50%;transform:scale(1.5)}.poster:after{content:"";position:absolute;width:100px;height:100px;border:1px solid #ffffff66;border-radius:50%;transform:scale(2.2)}.poster span{position:relative;z-index:1;background:#ffffff2a;border:1px solid #ffffff6a;backdrop-filter:blur(10px);border-radius:50%;width:60px;height:60px;display:grid;place-items:center;font-size:22px}.poster.one{background:linear-gradient(135deg,#7f4d86,#252d5a 65%,#13182f)}.poster.two{background:linear-gradient(135deg,#8b5d43,#334e6b 70%,#172533)}.poster.three{background:linear-gradient(135deg,#365d60,#7263a3 75%,#2d244c)}
+    .card-body{padding:20px}.card-top{display:flex;justify-content:space-between;gap:10px;align-items:start}.card h3{font-size:18px;line-height:1.25;margin:0 0 8px}.card p{font-size:13px}.status{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:#21152b;background:#dca8f0;padding:7px 9px;border-radius:99px;white-space:nowrap}.status.review{background:#f3c783;color:#39240c}.status.done{background:#a4dbb2;color:#15331b}.progress{height:5px;border-radius:9px;background:#323342;margin:22px 0 11px;overflow:hidden}.progress i{display:block;height:100%;background:#dca8f0;border-radius:9px}.card-foot{display:flex;justify-content:space-between;color:#aaa8bb;font-size:11px}.sample-note{margin-top:36px;border-top:1px solid #30303e;padding-top:16px;font-size:12px}
+    @media(max-width:950px){.app{grid-template-columns:1fr}aside{display:none}.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    @media(max-width:620px){main{padding:26px 17px 45px}.top{align-items:start}.pill{display:none}.summary{gap:8px;margin:26px 0}.metric{padding:14px}.metric strong{font-size:22px}.grid{grid-template-columns:1fr}.section-head{align-items:start;flex-direction:column}}
+  </style>
+</head>
+<body>
+  <div class="app">
+    <aside><div class="brand">Frame<b>Flow</b></div><div class="sub">Creative workspace</div><nav aria-label="Demo navigation"><span class="active">Overview</span><span>Projects</span><span>Review queue</span><span>Deliverables</span></nav><div class="aside-foot">A sample interface by Christian Lord V. Estorba.<br />Concept project · no client data.</div></aside>
+    <main>
+      <div class="top"><div><div class="eyebrow">Portfolio concept / 2026</div><h1>Keep every frame moving.</h1><p>A simple workspace for tracking edits, reviews, and final deliveries.</p></div><span class="pill">✦ Sample dashboard</span></div>
+      <div class="summary"><div class="metric"><small>Active projects</small><strong>03</strong><small><span class="dot"></span>All on track</small></div><div class="metric"><small>Awaiting review</small><strong>01</strong><small>Feedback in one place</small></div><div class="metric"><small>Delivered</small><strong>01</strong><small>Ready to share</small></div></div>
+      <div class="section-head"><div><div class="eyebrow">Production board</div><h2>Current edits</h2></div><div class="tabs" role="group" aria-label="Filter projects"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="editing" aria-pressed="false">Editing</button><button type="button" data-filter="review" aria-pressed="false">In review</button><button type="button" data-filter="done" aria-pressed="false">Delivered</button></div></div>
+      <div class="grid">
+        <article class="card" data-status="editing"><div class="poster one"><span aria-hidden="true">▶</span></div><div class="card-body"><div class="card-top"><h3>Launch film</h3><span class="status">Editing</span></div><p>A concise story cut for a fictional product launch.</p><div class="progress"><i style="width:64%"></i></div><div class="card-foot"><span>Rough cut</span><span>64%</span></div></div></article>
+        <article class="card" data-status="review"><div class="poster two"><span aria-hidden="true">▶</span></div><div class="card-body"><div class="card-top"><h3>Social highlights</h3><span class="status review">In review</span></div><p>Short vertical edits ready for comments and revisions.</p><div class="progress"><i style="width:88%"></i></div><div class="card-foot"><span>Review round</span><span>88%</span></div></div></article>
+        <article class="card" data-status="done"><div class="poster three"><span aria-hidden="true">▶</span></div><div class="card-body"><div class="card-top"><h3>Event recap</h3><span class="status done">Delivered</span></div><p>A highlight sequence with a clear start, pace, and finish.</p><div class="progress"><i style="width:100%"></i></div><div class="card-foot"><span>Final export</span><span>100%</span></div></div></article>
+      </div>
+      <p class="sample-note">This is a front-end concept built for the portfolio. Projects, names, and progress values are sample data.</p>
+    </main>
+  </div>
+  <script>
+    document.querySelectorAll('[data-filter]').forEach(button => button.addEventListener('click', () => {
+      const filter = button.dataset.filter;
+      document.querySelectorAll('[data-filter]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      document.querySelectorAll('.card').forEach(card => { card.hidden = filter !== 'all' && card.dataset.status !== filter; });
+    }));
+  </script>
+</body>
+</html>

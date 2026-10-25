@@ -29,7 +29,7 @@ export function getScroller(): HTMLElement | null {
  * ~80KB of scroll-engine JS is code-split out and NEVER fetched on touch
  * devices, which use native momentum scroll instead.
  */
-export function useLenis() {
+export function useLenis(pathname: string) {
   useEffect(() => {
     if (typeof window === 'undefined') return
 
@@ -72,10 +72,11 @@ export function useLenis() {
       // scroller. Passing a non-scrolling wrapper freezes the page.
       const panel = getScroller()
       const usesPanel = !!panel && window.innerWidth >= 1100
-      const content = panel?.firstElementChild as HTMLElement | undefined
-
       const lenis = new Lenis({
-        ...(usesPanel && content ? { wrapper: panel, content } : {}),
+        // The routed child can still be loading behind Suspense here, and it
+        // changes on navigation. The panel itself always exists and exposes
+        // the full scroll height, so keep both references stable.
+        ...(usesPanel ? { wrapper: panel, content: panel } : {}),
         // Shorter duration + steeper exponential easing makes the wheel feel
         // responsive instead of heavy. 1.1s read as "the page is sluggish".
         // 0.9s with a steeper curve still smooths native step jumps but
@@ -96,6 +97,25 @@ export function useLenis() {
       }
       gsap.ticker.add(tick)
       gsap.ticker.lagSmoothing(0)
+
+      // A lazy route can mount after Lenis is created. Recalculate the scroll
+      // limit when that child changes or grows (for example, after images load).
+      const resize = () => lenis.resize()
+      const contentResizeObserver = new ResizeObserver(resize)
+      const observeContent = () => {
+        contentResizeObserver.disconnect()
+        if (panel?.firstElementChild) contentResizeObserver.observe(panel.firstElementChild)
+        resize()
+        // App resets the native panel position on route changes. Keep Lenis's
+        // internal target in step or the next wheel gesture starts from the
+        // previous page's position and appears to do nothing.
+        lenis.scrollTo(0, { immediate: true, force: true })
+      }
+      const panelObserver = usesPanel ? new MutationObserver(observeContent) : null
+      if (usesPanel) {
+        observeContent()
+        panelObserver?.observe(panel, { childList: true })
+      }
 
       // Intercept in-page anchor clicks (#about, #works, #contact, etc.)
       // and smooth-scroll via Lenis instead of letting the browser hard-jump.
@@ -125,6 +145,8 @@ export function useLenis() {
       document.addEventListener('click', onAnchorClick)
 
       cleanup = () => {
+        panelObserver?.disconnect()
+        contentResizeObserver.disconnect()
         document.removeEventListener('click', onAnchorClick)
         gsap.ticker.remove(tick)
         lenis.destroy()
@@ -135,5 +157,5 @@ export function useLenis() {
       cancelled = true
       cleanup()
     }
-  }, [])
+  }, [pathname])
 }

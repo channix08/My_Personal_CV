@@ -1,13 +1,10 @@
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import { SealCheck } from '@/components/slab'
 import ThemeGlyph from './ThemeGlyph'
 import {
   HomeIcon,
   FolderIcon,
   StackIcon,
-  CupIcon,
-  StarIcon,
   UserIcon,
   MessageIcon,
 } from './RailIcons'
@@ -29,8 +26,6 @@ export const RAIL_LINKS = [
   { label: 'Home', to: '/', Icon: HomeIcon },
   { label: 'Projects', to: '/projects', Icon: FolderIcon },
   { label: 'Services', to: '/services', Icon: StackIcon },
-  { label: 'Showcase', to: '/showcase', Icon: CupIcon },
-  { label: 'Testimonials', to: '/testimonials', Icon: StarIcon },
   { label: 'About', to: '/about', Icon: UserIcon },
   { label: 'FAQs / Contact', to: '/contact', Icon: MessageIcon },
 ] as const
@@ -56,7 +51,6 @@ export default function Rail() {
 
         <h2 className="rail__name">
           {profile.name}
-          <SealCheck size={19} weight="fill" aria-label={profile.verifiedLabel} />
         </h2>
         <p className="rail__handle">
           {profile.handle}
@@ -66,21 +60,15 @@ export default function Rail() {
           <ul className="rail__socials" role="list" aria-label="Social profiles">
           {profile.socials.map(({ label, href, iconPath }) => (
             <li key={label}>
-              <a
-                className="rail__social"
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-              >
-                {/* Single-colour silhouettes, tinted by currentColor through a
-                    CSS mask - same technique as the hero's social row. */}
-                <span
-                  className="rail__social-icon"
-                  style={{ ['--icon-url' as string]: `url('${iconPath}')` }}
-                  aria-hidden="true"
-                />
-              </a>
+              {href ? (
+                <a className="rail__social" href={href} target="_blank" rel="noopener noreferrer" aria-label={label}>
+                  <span className="rail__social-icon" style={{ ['--icon-url' as string]: `url('${iconPath}')` }} aria-hidden="true" />
+                </a>
+              ) : (
+                <span className="rail__social rail__social--pending" role="img" aria-label={`${label} profile link coming soon`} title={`${label} profile link coming soon`}>
+                  <span className="rail__social-icon" style={{ ['--icon-url' as string]: `url('${iconPath}')` }} aria-hidden="true" />
+                </span>
+              )}
               </li>
             ))}
           </ul>

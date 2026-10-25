@@ -62,8 +62,8 @@ export default function Home() {
       <div className="home__glass home__glass--tools">
         <div className="home__tools">
           <div className="home__tools-head">
-            <span className="home__tools-eyebrow">Daily drivers</span>
-            <h2 className="home__tools-label">Tools I work with</h2>
+            <span className="home__tools-eyebrow">Dev + design + video</span>
+            <h2 className="home__tools-label">Tools I use</h2>
           </div>
           <ToolsMarquee />
         </div>

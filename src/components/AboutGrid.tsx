@@ -1,106 +1,69 @@
-import type { CSSProperties } from 'react'
-import { ArrowUpRight, MapPin } from '@/components/slab'
+import { ArrowUpRight, MapPin, Code, Database, FilmSlate, Scissors, GraduationCap, EnvelopeSimple, type Icon } from '@/components/slab'
 import { profile } from '@/data/profile'
+import { education } from '@/data/education'
+import CertificatesFolder from './CertificatesFolder'
 
 /**
- * AboutGrid - the About view as a fixed viewport.
- *
- * One glass sheet, two columns: who you are on the left, the illustration
- * on the right. Sized to the panel, so nothing here scrolls.
- *
- * The left column is a ladder, not a paragraph block: one display statement,
- * one line of context, then the four things you do - each carrying the marks
- * of the tools it is built with. The tools are the proof, so they are the
- * visual. Swap the marks below for your own (any square SVG/PNG in public/).
+ * Profile, education, academic honors, and certificates for the CV page.
  */
-
-const N8N = { src: '/icons/ai/n8n.svg', name: 'n8n' }
-const ZAPIER = { src: '/icons/ai/zapier.svg', name: 'Zapier' }
-const DOCKER = { src: '/icons/ai/docker.svg', name: 'Docker' }
-const CLAUDE = { src: '/icons/ai/claude-color.svg', name: 'Claude' }
-const CODEX = { src: '/icons/ai/codex.svg', name: 'Codex' }
-const GLM = { src: '/icons/ai/zhipu.svg', name: 'GLM' }
-const QWEN = { src: '/icons/ai/qwen.svg', name: 'Qwen' }
-const HERMES = { src: '/icons/ai/hermes.svg', name: 'Hermes' }
-const NAMECHEAP = { src: '/icons/ai/namecheap.svg', name: 'Namecheap' }
-const CLOUDFLARE = { src: '/icons/ai/cloudflare.svg', name: 'Cloudflare' }
-const GITHUB = { src: '/icons/ai/github.svg', name: 'GitHub' }
-const GWS = { src: '/icons/googleworkspace.svg', name: 'Google Workspace' }
-const SLACK = { src: '/icons/ai/slack-color.svg', name: 'Slack' }
-const FIREFLIES = { src: '/icons/ai/fireflies.png', name: 'Fireflies' }
 
 type Capability = {
   index: string
   title: string
-  marks: { src: string; name: string }[]
+  Icon: Icon
 }
 
 const CAPABILITIES: Capability[] = [
   {
     index: '01',
-    title: 'Your role 1',
-    marks: [N8N, ZAPIER, DOCKER],
+    title: 'Front-end development',
+    Icon: Code,
   },
   {
     index: '02',
-    title: 'Your role 2',
-    marks: [CLAUDE, CODEX, GLM, QWEN, HERMES],
+    title: 'Full-stack web development',
+    Icon: Database,
   },
   {
     index: '03',
-    title: 'Your role 3',
-    marks: [CLAUDE, CODEX, NAMECHEAP, CLOUDFLARE, GITHUB],
+    title: 'Video editing',
+    Icon: FilmSlate,
   },
   {
     index: '04',
-    title: 'Your role 4',
-    marks: [GWS, SLACK, FIREFLIES],
+    title: 'Short-form visual content',
+    Icon: Scissors,
   },
 ]
 
 export default function AboutGrid() {
   return (
-    <section className="pgrid agrid" aria-labelledby="about-title">
+    <section className="pgrid agrid cv-about" aria-labelledby="about-title">
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">About</span>
         <h1 className="pgrid__title" id="about-title">
           {`Hi, I’m ${profile.firstName}.`}
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one line on what you do.
+          I work across web development and video editing to make useful, engaging digital experiences.
         </p>
       </header>
 
       <div className="home__glass agrid__glass">
         <div className="agrid__copy">
           <p className="agrid__lead">
-            Your big statement goes here, in one or two lines.
-            <span> A softer second half that finishes the thought.</span>
+            I turn ideas into websites, apps, and videos.
+            <span> Clear structure and thoughtful details make the work easier to use and enjoy.</span>
           </p>
 
           <p className="agrid__note">
-            <strong>Your company name</strong>, and{' '}
-            <a className="agrid__link" href="#">
-              your product
-            </a>{' '}
-            - PLACEHOLDER - tell me what to put here: two sentences on your company, what
-            you sell or build, and who it is for.
+            <strong>I'm Christian Lord V. Estorba</strong>, a full stack web developer and video editor based in Davao City, Philippines. I enjoy connecting technical problem solving with visual storytelling, from responsive interfaces to polished edits.
           </p>
 
           <ul className="agrid__caps" role="list">
             {CAPABILITIES.map((c) => (
               <li key={c.index} className="agrid__cap">
-                <span className="agrid__cap-marks">
-                  {c.marks.map((m, i) => (
-                    <span
-                      key={m.name}
-                      className="agrid__mark"
-                      style={{ '--i': c.marks.length - i } as CSSProperties}
-                    >
-                      <img src={m.src} alt={m.name} loading="lazy" decoding="async" />
-                    </span>
-                  ))}
-                </span>
+                <span className="agrid__cap-marks"><span className="agrid__mark"><c.Icon size={20} weight="duotone" aria-hidden="true" /></span></span>
                 <span className="agrid__cap-title">{c.title}</span>
                 <span className="agrid__cap-index" aria-hidden="true">
                   {c.index}
@@ -113,11 +76,11 @@ export default function AboutGrid() {
           <div className="agrid__bar">
             <span className="agrid__cell">
               <span className="agrid__cell-mark agrid__cell-mark--img">
-                <img src="/placeholders/badge.svg" alt="" loading="lazy" decoding="async" />
+                <GraduationCap size={18} weight="duotone" aria-hidden="true" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Credential name</span>
-                <span className="agrid__cell-meta">Credential ID</span>
+                <span className="agrid__cell-title">BS Information Technology</span>
+                <span className="agrid__cell-meta">Fourth-year student</span>
               </span>
             </span>
 
@@ -127,17 +90,17 @@ export default function AboutGrid() {
               </span>
               <span className="agrid__cell-copy">
                 <span className="agrid__cell-title">{profile.location}</span>
-                <span className="agrid__cell-meta">Timezone · working hours</span>
+                <span className="agrid__cell-meta">Philippine Time (UTC+8)</span>
               </span>
             </span>
 
-            <a className="agrid__cell agrid__cell--wide" href="#">
+            <a className="agrid__cell agrid__cell--wide" href={`mailto:${profile.email}`}>
               <span className="agrid__cell-mark agrid__cell-mark--plain">
-                <img src="/placeholders/logo.svg" alt="" loading="lazy" decoding="async" />
+                <EnvelopeSimple size={18} weight="duotone" aria-hidden="true" />
               </span>
               <span className="agrid__cell-copy">
-                <span className="agrid__cell-title">Community or affiliation</span>
-                <span className="agrid__cell-meta">Your role there</span>
+                <span className="agrid__cell-title">Get in touch</span>
+                <span className="agrid__cell-meta">{profile.email}</span>
               </span>
               <ArrowUpRight className="agrid__cell-go" size={15} weight="bold" aria-hidden="true" />
             </a>
@@ -146,13 +109,54 @@ export default function AboutGrid() {
 
         <div className="agrid__portrait">
           <img
-            src="/avatar.svg"
-            alt="Portrait placeholder"
+            src={profile.hero.portraitSrc}
+            alt={profile.hero.portraitAlt}
             loading="eager"
             decoding="async"
             width={400}
             height={400}
           />
+        </div>
+      </div>
+
+      <div className="cv-about__details">
+        <section className="cv-card cv-card--education" aria-labelledby="education-title">
+          <div className="cv-card__heading">
+            <span className="cv-card__icon"><GraduationCap size={23} weight="duotone" aria-hidden="true" /></span>
+            <div>
+              <span className="pgrid__eyebrow">Academic background</span>
+              <h2 id="education-title">Education &amp; honors</h2>
+            </div>
+          </div>
+          <div className="cv-education__school">
+            <h3>{education.school}</h3>
+            <p>{education.degree}</p>
+            <span>{education.yearLevel}</span>
+          </div>
+          <h3 className="cv-card__subhead">Dean’s List</h3>
+          <ul className="cv-honors" role="list">
+            {education.honors.map(({ year, semester, honor }) => (
+              <li key={`${year}-${semester}`}>
+                <span className="cv-honors__term">{year} · {semester}</span>
+                <strong>{honor}</strong>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <div className="cv-about__side">
+          <section className="cv-card" aria-labelledby="objective-title">
+            <div className="cv-card__heading">
+              <span className="cv-card__icon"><Code size={23} weight="duotone" aria-hidden="true" /></span>
+              <div>
+                <span className="pgrid__eyebrow">Career direction</span>
+                <h2 id="objective-title">Objective</h2>
+              </div>
+            </div>
+            <p className="cv-card__body">To keep growing as a full stack web developer and video editor by creating useful digital experiences and thoughtful visual stories.</p>
+          </section>
+
+          <CertificatesFolder />
         </div>
       </div>
     </section>

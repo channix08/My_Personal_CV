@@ -162,6 +162,7 @@
 }
 .cgrid__social img { width: 16px; height: 16px; filter: invert(1) brightness(1.4); }
 .cgrid__social:hover { background: rgba(255, 255, 255, 0.12); transform: translateY(-2px); }
+.cgrid__social--pending:hover { background: rgba(255, 255, 255, 0.06); transform: none; }
 .cgrid__social:focus-visible { outline: 2px solid var(--orange); outline-offset: 2px; }
 
 /* ---------- Right: the form ---------- */

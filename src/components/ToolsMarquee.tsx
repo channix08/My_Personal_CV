@@ -3,8 +3,7 @@ import { useMemo } from 'react'
 /**
  * ToolsMarquee
  *
- * Horizontally scrolling strip of brand logos + labels for the tools you work with.
- * PLACEHOLDER - swap the list below for your own tools (icons live in public/icons/).
+ * Horizontally scrolling strip of development, AI, design, and video tools.
  * The strip lives on the cream shader page, NOT inside a dark section.
  *
  * Implementation notes:
@@ -38,17 +37,24 @@ type Tool = {
 }
 
 export const tools: Tool[] = [
-  { name: 'Claude Code',          iconPath: '/icons/claude-code-logo.png' },
-  { name: 'Codex',                iconPath: '/icons/codex.svg',           color: '#000000' },
-  { name: 'Cursor',               iconPath: '/icons/cursor.svg',          color: '#0F172A' },
-  { name: 'Hermes AI',            iconPath: '/icons/nousresearch.svg',    color: '#18181B' },
-  { name: 'VS Code',              iconPath: '/icons/vscode.svg' },
-  { name: 'GoHighLevel',          iconPath: '/icons/gohighlevel.png' },
-  { name: 'Lightspeed X-Series',  iconPath: '/icons/lightspeed.png' },
-  { name: 'Google Workspace',     iconPath: '/icons/googleworkspace.svg' },
-  { name: 'Zendesk',              iconPath: '/icons/zendesk.svg',         color: '#03363D' },
-  { name: 'Intercom',             iconPath: '/icons/intercom.svg',        color: '#1F8DED' },
-  { name: 'Slack',                iconPath: '/icons/slack.svg',           color: '#611F69' },
+  { name: 'Codex', iconPath: '/icons/codex.svg', color: '#111827' },
+  { name: 'Claude Code', iconPath: '/icons/claude-code-logo.png' },
+  { name: 'Gemini', iconPath: '/icons/gemini.svg' },
+  { name: 'Cursor', iconPath: '/icons/cursor.svg', color: '#111827' },
+  { name: 'Antigravity', iconPath: '/icons/antigravity.svg' },
+  { name: 'Trae AI', iconPath: '/icons/trae.svg' },
+  { name: 'Canva', iconPath: '/icons/canva.svg' },
+  { name: 'Adobe Photoshop', iconPath: '/icons/photoshop.svg' },
+  { name: 'Figma', iconPath: '/icons/figma.svg' },
+  { name: 'React', iconPath: '/icons/ai/react.svg', color: '#61DAFB' },
+  { name: 'Vite', iconPath: '/icons/ai/vite.svg', color: '#646CFF' },
+  { name: 'Node.js', iconPath: '/icons/ai/nodedotjs.svg', color: '#5FA04E' },
+  { name: 'Supabase', iconPath: '/icons/supabase.svg' },
+  { name: 'Firebase', iconPath: '/icons/firebase.svg' },
+  { name: 'TypeScript', iconPath: '/icons/typescript.svg' },
+  { name: 'Premiere Pro', iconPath: '/icons/premiere-pro.svg' },
+  { name: 'Envato', iconPath: '/icons/envato.svg' },
+  { name: 'CapCut', iconPath: '/icons/capcut.svg' },
 ]
 
 export default function ToolsMarquee() {
@@ -57,7 +63,7 @@ export default function ToolsMarquee() {
   const doubled = useMemo(() => [...tools, ...tools], [])
 
   return (
-    <section className="tools-marquee" aria-label="Tools I work with" data-reveal>
+    <section className="tools-marquee" aria-label="Development, AI, design, and video tools I use" data-reveal>
       <div className="tools-marquee__track" aria-hidden="true">
         {doubled.map((tool, i) => {
           const useMask = tool.iconPath.endsWith('.svg') && !!tool.color

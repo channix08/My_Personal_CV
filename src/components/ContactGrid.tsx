@@ -60,10 +60,10 @@ export default function ContactGrid() {
       <header className="pgrid__head">
         <span className="pgrid__eyebrow">FAQs / Contact</span>
         <h1 className="pgrid__title" id="contact-title">
-          Your contact headline goes here.
+          Have a project in mind? Let's talk.
         </h1>
         <p className="pgrid__lede">
-          PLACEHOLDER - tell me what to put here: one or two lines inviting people to write and saying what they get back.
+          Tell me about the website, app, or video you need. Share the goal and any references, and we can discuss the next step.
         </p>
       </header>
 
@@ -111,9 +111,15 @@ export default function ContactGrid() {
             <ul className="cgrid__socials" role="list">
               {profile.socials.map((s) => (
                 <li key={s.label}>
-                  <a className="cgrid__social" href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
-                    <img src={s.iconPath} alt="" loading="lazy" decoding="async" />
-                  </a>
+                  {s.href ? (
+                    <a className="cgrid__social" href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}>
+                      <img src={s.iconPath} alt="" loading="lazy" decoding="async" />
+                    </a>
+                  ) : (
+                    <span className="cgrid__social cgrid__social--pending" role="img" aria-label={`${s.label} profile link coming soon`} title={`${s.label} profile link coming soon`}>
+                      <img src={s.iconPath} alt="" loading="lazy" decoding="async" />
+                    </span>
+                  )}
                 </li>
               ))}
             </ul>
@@ -132,8 +138,8 @@ export default function ContactGrid() {
               </h2>
               <p className="cgrid__done-body">
                 {status.via === 'webhook'
-                  ? 'It is in my inbox and on my phone. You will hear back within one business day.'
-                  : 'The message is laid out and addressed. Press send there and you will hear back within one business day.'}
+                  ? 'Your message has been sent. Thank you for sharing the details.'
+                  : 'Your message is ready in your email app. Press send there to finish contacting me.'}
               </p>
               <button type="button" className="cgrid__again" onClick={() => setStatus({ kind: 'idle' })}>
                 Write another
@@ -169,12 +175,12 @@ export default function ContactGrid() {
               </label>
 
               <label className="cgrid__field cgrid__field--grow">
-                <span className="cgrid__label">Tell me more about your business</span>
+                <span className="cgrid__label">Tell me about your project</span>
                 <textarea
                   name="message"
                   required
                   maxLength={MAX_MESSAGE}
-                  placeholder="What do you need help with? What are you working with today?"
+                  placeholder="What are you building or editing? What should it achieve?"
                 />
               </label>
 
@@ -197,7 +203,7 @@ export default function ContactGrid() {
                     {status.note}
                   </span>
                 ) : (
-                  <span className="cgrid__hint">Short reassurance line, e.g. your reply time.</span>
+                  <span className="cgrid__hint">This opens your email app unless a contact endpoint is configured.</span>
                 )}
               </div>
             </form>
