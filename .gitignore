@@ -13,7 +13,6 @@ yarn-error.log*
 pnpm-debug.log*
 .env
 .env.*
-# .env.production holds only the Contact Worker URL - public, and the build
-# needs it - so it is the one env file that is tracked.
-!.env.production
+# Keep all environment files private. Gmail credentials belong only in
+# Vercel server-side environment variables, never in a VITE_ variable.
 !.env.example

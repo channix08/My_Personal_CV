@@ -3,18 +3,12 @@ import { profile } from '@/data/profile'
 /**
  * Contact submission.
  *
- * Out of the box there is no backend: submitLead() opens the visitor's mail
- * client with a message addressed to profile.email (src/data/profile.ts).
- *
- * To wire a real backend (Formspree, a serverless function, a webhook...):
- *   1. Set VITE_CONTACT_ENDPOINT in .env.production to the URL that accepts
- *      a JSON POST of the Lead type below.
- *   2. Have it answer 2xx on success, or a non-2xx with { "error": "..." }
- *      and that sentence is shown to the visitor as-is.
- * With the variable unset the mail client path below is used instead.
+ * On Vercel, the form posts to the same-origin /api/contact function, which
+ * sends mail through Gmail. GitHub Pages is static, so that build keeps the
+ * mailto fallback. VITE_CONTACT_ENDPOINT can override either destination.
  */
 
-export const ENDPOINT: string = import.meta.env.VITE_CONTACT_ENDPOINT ?? ''
+export const ENDPOINT: string = import.meta.env.VITE_CONTACT_ENDPOINT ?? (import.meta.env.BASE_URL === '/' ? '/api/contact' : '')
 export const RECIPIENT = profile.email
 
 export const MAX_NAME = 80
@@ -69,10 +63,8 @@ export async function submitLead(lead: Lead): Promise<SubmitResult> {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(lead),
     })
-    if (!res.ok) {
-      const body = await res.json().catch(() => null)
-      throw new SubmitError(body?.error || `The server answered ${res.status}.`)
-    }
+    const body = await res.json().catch(() => null)
+    if (!res.ok || body?.ok !== true) throw new SubmitError(body?.error || 'The message did not go through. Email me directly instead.')
     return { via: 'webhook' }
   }
 

@@ -2,7 +2,7 @@ import { useState, type FormEvent } from 'react'
 import { PaperPlaneTilt, CheckCircle, WarningCircle, EnvelopeSimple, ArrowUpRight, CaretDown } from '@/components/slab'
 import { FAQS } from '@/data/faqs'
 import { profile } from '@/data/profile'
-import { readLead, submitLead, SubmitError, MAX_NAME, MAX_EMAIL, MAX_MESSAGE, type SubmitResult } from '@/lib/contact'
+import { readLead, submitLead, SubmitError, ENDPOINT, MAX_NAME, MAX_EMAIL, MAX_MESSAGE, type SubmitResult } from '@/lib/contact'
 
 /**
  * ContactGrid - the Contact view as a fixed viewport.
@@ -12,9 +12,8 @@ import { readLead, submitLead, SubmitError, MAX_NAME, MAX_EMAIL, MAX_MESSAGE, ty
  * the form itself on the right. Sized to the panel, so
  * nothing here scrolls; the message box takes whatever height is left.
  *
- * Submission goes through lib/contact.ts, which is the one place a form
- * backend gets wired. Until it is, the same call opens the visitor's mail
- * client with the message laid out, and the success copy says so.
+ * Submission goes through lib/contact.ts. Vercel uses the Gmail-backed API;
+ * the static GitHub Pages build opens the visitor's email app instead.
  */
 
 type Status = { kind: 'idle' } | { kind: 'sending' } | { kind: 'error'; note: string } | { kind: 'sent'; via: SubmitResult['via'] }
@@ -203,7 +202,7 @@ export default function ContactGrid() {
                     {status.note}
                   </span>
                 ) : (
-                  <span className="cgrid__hint">This opens your email app unless a contact endpoint is configured.</span>
+                  <span className="cgrid__hint">{ENDPOINT ? 'I’ll reply to the email address you provide.' : 'This opens your email app to finish sending.'}</span>
                 )}
               </div>
             </form>

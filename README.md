@@ -16,6 +16,7 @@ Fourth-year Bachelor of Science in Information Technology student at Davao del N
 - **Design:** CSS, Poppins, Phosphor icons
 - **Animation and interaction:** GSAP, Lenis, Three.js
 - **Development tools:** Git, GitHub, npm
+- **Contact delivery on Vercel:** Vercel Function, Gmail API, Google OAuth 2.0
 
 ## Live Vercel Link
 
@@ -37,7 +38,28 @@ The default build uses `/` for Vercel. The GitHub Pages workflow sets `SITE_BASE
 - **About:** profile, education, honors, career objective, and certificate gallery
 - **Projects:** space for my upcoming academic and personal work
 - **Services:** web development and video editing
-- **Contact:** contact information, social profiles, and message form
+- **Contact:** contact information, social profiles, and a Gmail-backed message form on Vercel
+
+## Connect the Contact Form to Gmail
+
+Once configured, the Vercel version of the form sends messages to **christianvaleestorba@gmail.com** through a server-side function. The visitor's address is set as **Reply-To**, so I can reply directly. The credentials are never included in the browser bundle or committed to Git.
+
+1. In [Google Cloud Console](https://console.cloud.google.com/), create or select a project and enable the **Gmail API**. Configure the OAuth consent screen for an external app, add `christianvaleestorba@gmail.com` as a test user while in Testing, and request only the `https://www.googleapis.com/auth/gmail.send` scope.
+2. Create an OAuth client of type **Desktop app**. Copy its client ID and client secret. In PowerShell, from this repository folder, run:
+
+   ```powershell
+   $env:GMAIL_CLIENT_ID = 'your-client-id'
+   $env:GMAIL_CLIENT_SECRET = 'your-client-secret'
+   node .\scripts\setup-gmail.mjs
+   ```
+
+   Open the URL printed in the terminal and authorize **christianvaleestorba@gmail.com**. The script displays a refresh token. Keep that token private; do not paste it into GitHub or a `VITE_` variable.
+3. In **Vercel → Project → Settings → Environment Variables**, add `GMAIL_CLIENT_ID`, `GMAIL_CLIENT_SECRET`, and `GMAIL_REFRESH_TOKEN` as server-side variables for Production. Redeploy after saving them.
+4. Send a test message from the deployed Contact page and check the Gmail inbox (and Spam). If the form reports a delivery error, inspect the Vercel Function logs for `/api/contact`.
+
+Google's OAuth **Testing** status makes refresh tokens for this scope expire after seven days. Move the OAuth app to **Production** and satisfy any Google verification requirements before relying on the form long term. See [Google's OAuth documentation](https://developers.google.com/identity/protocols/oauth2), [Gmail API sending guide](https://developers.google.com/workspace/gmail/api/guides/sending), and [Vercel's Vite Functions guide](https://vercel.com/docs/frameworks/frontend/vite).
+
+The GitHub Pages build is static and still opens the visitor's email app when they submit the form. To exercise the `/api/contact` function locally, use `vercel dev`; the plain Vite development server does not run Vercel Functions.
 
 ## Run Locally
 
@@ -51,6 +73,7 @@ To check the production build and code quality:
 ```bash
 npm run build
 npm run lint
+npm test
 ```
 
 ## Add My Content

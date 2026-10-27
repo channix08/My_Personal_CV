@@ -62,7 +62,7 @@ export const profile: Profile = {
   displayName: { line1: 'Full Stack Dev and', line2: 'Video Editor' },
   hero: {
     body: 'I build thoughtful web experiences and edit videos that make ideas clear, engaging, and easy to share.',
-    portraitSrc: assetUrl('/profile.jpg'),
+    portraitSrc: assetUrl('/myprofile.png'),
     portraitAlt: 'Portrait of Christian Lord V. Estorba',
   },
   socials: [
